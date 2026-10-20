@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "nombre": "El gato que venía del cielo",
+        "autor": "Takashi Hiraide",
+        "genero": "Novela / ficción literaria",
+        "precio": 280,
+        "descripcion": "Una novela tranquila e intimista que cuenta la historia de una pareja que vive en una casa alquilada y cuya vida cambia con la llegada de un gato que comienza a visitarlos. A través de la relación con el animal, la historia reflexiona sobre el hogar, el paso del tiempo, la felicidad y las pequeñas cosas de la vida.",
+        "stock": 10
+    },
+    {
+        "id": 2,
+        "nombre": "El francotirador paciente",
+        "autor": "Arturo Pérez-Reverte",
+        "genero": "Misterio / thriller",
+        "precio": 320,
+        "descripcion": "Novela de misterio y thriller que sigue a una especialista en arte urbano que busca a un famoso y misterioso grafitero. La investigación la lleva por distintas ciudades y ambientes relacionados con el grafiti, mientras intenta descubrir quién es realmente el artista y qué hay detrás de sus obras.",
+        "stock": 8
+    },
+    {
+        "id": 3,
+        "nombre": "Mujercitas",
+        "autor": "Louisa May Alcott",
+        "genero": "Novela / clásica",
+        "precio": 250,
+        "descripcion": "La novela cuenta la vida de las cuatro hermanas March: Meg, Jo, Beth y Amy, quienes crecen junto a su madre mientras enfrentan dificultades económicas, familiares y personales. La historia aborda temas como la familia, la amistad, el amor, los sueños personales y el proceso de madurar.",
+        "stock": 12
+    },
+    {
+        "id": 4,
+        "nombre": "Qué hacer con estos pedazos",
+        "autor": "Piedad Bonnett",
+        "genero": "Novela contemporánea",
+        "precio": 290,
+        "descripcion": "Una novela contemporánea sobre una mujer que, al acercarse a una etapa de cambios en su vida, comienza a cuestionar su pasado, su familia, su matrimonio y las decisiones que ha tomado. Es una historia introspectiva sobre la identidad, el paso del tiempo y la necesidad de reconstruirse.",
+        "stock": 7
+    },
+    {
+        "id": 5,
+        "nombre": "La sociedad del cansancio",
+        "autor": "Byung-Chul Han",
+        "genero": "Ensayo filosófico",
+        "precio": 230,
+        "descripcion": "Ensayo filosófico que analiza cómo funciona la sociedad moderna y cómo la presión por ser productivos, exitosos y eficientes puede llevar al agotamiento. El autor reflexiona sobre fenómenos como la autoexigencia, el estrés, la hiperproductividad y el cansancio en la vida contemporánea.",
+        "stock": 9
+    }
+]

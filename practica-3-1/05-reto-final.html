@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha - Mujercitas</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Librería Mars</h1>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <main id="inicio">
+
+        <section id="catalogo">
+
+            <h2>Mujercitas</h2>
+
+            <figure>
+                <img
+                    src="https://placehold.co/300x400"
+                    alt="Portada de ejemplo del libro Mujercitas"
+                    width="300"
+                >
+                <figcaption>Mujercitas - Louisa May Alcott</figcaption>
+            </figure>
+
+            <article>
+                <h3>Información</h3>
+
+                <ul>
+                    <li>Autora: Louisa May Alcott</li>
+                    <li>Género: Novela / novela de formación</li>
+                    <li>Tipo: Novela</li>
+                </ul>
+
+                <p>
+                    La historia sigue a las hermanas Meg, Jo, Beth y Amy,
+                    quienes enfrentan dificultades familiares y personales
+                    junto con su madre. La obra trata temas como la familia,
+                    la amistad, el amor, los sueños y el crecimiento.
+                </p>
+            </article>
+
+            <aside>
+                <h3>Solicitud</h3>
+
+                <form action="#" method="post">
+
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <br><br>
+
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" required>
+
+                    <br><br>
+
+                    <label for="cantidad">Cantidad:</label>
+                    <input
+                        type="number"
+                        id="cantidad"
+                        name="cantidad"
+                        min="1"
+                        max="5"
+                    >
+
+                    <br><br>
+
+                    <input type="submit" value="Solicitar libro">
+
+                </form>
+            </aside>
+
+            <p>
+                Para consultar referencias de HTML:
+                <a
+                    href="https://overapi.com/html"
+                    target="_blank"
+                >
+                    OverAPI
+                </a>
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer id="contacto">
+        <p>Mariana - Librería Mars</p>
+    </footer>
+
+</body>
+</html>
