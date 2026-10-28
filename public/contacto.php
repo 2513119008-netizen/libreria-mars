@@ -54,9 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </header>
 
 <nav>
-    <a href="index.php">Inicio</a>
-    <a href="productos.php">Catálogo</a>
-    <a href="contacto.php">Contacto</a>
+    <li><a href="index.php">Inicio</a></li>
+    <li><a href="productos.php">Catálogo</a></li>
+    <li><a href="contacto.php" aria-current="page">Contacto</a></li>
 </nav>
 
 <main>

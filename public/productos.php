@@ -33,9 +33,9 @@ if (file_exists($ruta)) {
         <p>Catálogo de libros</p>
     </header>
 
-    <nav>
-        <a href="index.php">Inicio</a>
-        <a href="productos.php">Catálogo</a>
+    <nav arial-label="Principal">
+        <a href="index.php" >Inicio</a>
+        <a href="productos.php"  aria-current="page">Catálogo</a>
         <a href="contacto.php">Contacto</a>
     </nav>
 

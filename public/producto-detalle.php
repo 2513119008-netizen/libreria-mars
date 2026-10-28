@@ -29,13 +29,16 @@ foreach ($libros as $item) {
 
 <body>
     <header>
-        <h1>📖 Ficha del libro</h1>
+        <h1> Ficha del libro</h1>
     </header>
 
-    <nav>
-        <a href="index.php">Inicio</a>
-        <a href="productos.php">Catálogo</a>
-        <a href="contacto.php">Contacto</a>
+    
+    <nav aria-label="Principal">
+        <ul>
+            <li><a href="index.php">Inicio</a></li>
+            <li><a href="productos.php" aria-current="page">Catálogo</a></li>
+            <li><a href="contacto.php">Contacto</a></li>
+        </ul>
     </nav>
 
     <main>
