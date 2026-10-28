@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitud de libro</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Librería Mars</h1>
+    </header>
+
+    <main>
+
+        <h2>Solicitud de libro</h2>
+
+        <form action="#" method="post">
+
+            <fieldset>
+                <legend>Datos del solicitante</legend>
+
+                <p>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </p>
+
+                <p>
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" id="correo" name="correo" required>
+                </p>
+
+                <p>
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </p>
+
+                <p>
+                    <label for="cantidad">Cantidad de libros:</label>
+                    <input type="number" id="cantidad" name="cantidad" min="1" max="5">
+                </p>
+
+            </fieldset>
+
+            <p>
+                <label for="libro">Selecciona un libro:</label>
+
+                <select id="libro" name="libro" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="gato">El gato que venía del cielo</option>
+                    <option value="francotirador">El francotirador paciente</option>
+                    <option value="mujercitas">Mujercitas</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="comentarios">Comentarios:</label>
+                <textarea id="comentarios" name="comentarios" rows="5" cols="40"></textarea>
+            </p>
+
+            <p>
+                <input type="submit" value="Enviar solicitud">
+            </p>
+
+        </form>
+
+    </main>
+
+    <footer>
+        <p>Librería Mars</p>
+    </footer>
+
+</body>
+</html>
