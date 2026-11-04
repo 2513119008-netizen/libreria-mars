@@ -1,19 +1,20 @@
 <?php
-// Ruta corregida para acceder al archivo JSON desde la carpeta public/
-$ruta = __DIR__ . "/../datos/datos.json";
+declare(strict_types=1);
 
-$libros = [];
+ini_set('display_errors', '1');
+error_reporting(E_ALL);
 
-if (file_exists($ruta)) {
-    $contenido = file_get_contents($ruta);
-    $libros = json_decode($contenido, true);
+try {
+    require_once __DIR__ . '/../src/datos/RepositorioProductos.php';
+    require_once __DIR__ . '/../src/utilidades/vistas.php';
 
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        $libros = [];
-        $error = "Error en el archivo datos.json: " . json_last_error_msg();
-    }
-} else {
-    $error = "No se encontró el archivo datos/datos.json.";
+    $repositorio = new RepositorioProductos();
+    $libros = $repositorio->obtenerTodos();
+
+} catch (Throwable $error) {
+    echo '<h2>Encontramos un error</h2>';
+    echo '<p>' . htmlspecialchars($error->getMessage()) . '</p>';
+    exit;
 }
 ?>
 
@@ -33,33 +34,28 @@ if (file_exists($ruta)) {
         <p>Catálogo de libros</p>
     </header>
 
-    <nav arial-label="Principal">
-        <a href="index.php" >Inicio</a>
-        <a href="productos.php"  aria-current="page">Catálogo</a>
+    <nav aria-label="Principal">
+        <a href="index.php">Inicio</a>
+        <a href="productos.php" aria-current="page">Catálogo</a>
         <a href="contacto.php">Contacto</a>
     </nav>
 
     <main>
         <h2>Nuestros libros</h2>
 
-        <?php if (isset($error)): ?>
+        <?php if (isset($mensajeError)): ?>
             <div class="error">
-                <?= htmlspecialchars($error) ?>
+                <?= escapar($mensajeError) ?>
             </div>
         <?php endif; ?>
 
         <section class="catalogo">
             <?php if (!empty($libros)): ?>
+
                 <?php foreach ($libros as $libro): ?>
-                    <article>
-                        <h3>📖 <?= htmlspecialchars($libro["nombre"]) ?></h3>
-                        <p class="autor">Autor/a: <?= htmlspecialchars($libro["autor"]) ?></p>
-                        <p class="genero">Género: <?= htmlspecialchars($libro["genero"]) ?></p>
-                        <p class="precio">$<?= number_format($libro["precio"], 2) ?></p>
-                        <p>Stock: <?= htmlspecialchars($libro["stock"]) ?></p>
-                        <a class="boton" href="producto-detalle.php?id=<?= $libro["id"] ?>">Ver ficha</a>
-                    </article>
+                    <?php mostrarTarjetaProducto($libro); ?>
                 <?php endforeach; ?>
+
             <?php else: ?>
                 <article>
                     <h3>No hay libros para mostrar</h3>

@@ -1,19 +1,25 @@
 <?php
+declare(strict_types=1);
 
-$ruta = __DIR__ . "/../datos/datos.json";
+require_once __DIR__ . '/../src/datos/RepositorioProductos.php';
+require_once __DIR__ . '/../src/utilidades/vistas.php';
 
-$contenido = file_get_contents($ruta);
-$libros = json_decode($contenido, true);
+$repositorio = new RepositorioProductos();
 
-$id = isset($_GET["id"]) ? intval($_GET["id"]) : 0;
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-$libro = null;
-
-foreach ($libros as $item) {
-    if ($item["id"] == $id) {
-        $libro = $item;
-        break;
+try {
+    if ($id === false || $id === null || $id <= 0) {
+        throw new OutOfBoundsException('El ID del libro no es válido.');
     }
+
+    $libro = $repositorio->buscarPorId($id);
+} catch (OutOfBoundsException $error) {
+    http_response_code(404);
+    $mensajeError = $error->getMessage();
+} catch (RuntimeException $error) {
+    http_response_code(500);
+    $mensajeError = $error->getMessage();
 }
 ?>
 
@@ -29,10 +35,9 @@ foreach ($libros as $item) {
 
 <body>
     <header>
-        <h1> Ficha del libro</h1>
+        <h1>Ficha del libro</h1>
     </header>
 
-    
     <nav aria-label="Principal">
         <ul>
             <li><a href="index.php">Inicio</a></li>
@@ -42,23 +47,45 @@ foreach ($libros as $item) {
     </nav>
 
     <main>
-        <?php if ($libro): ?>
-            <article>
-                <h2><?= htmlspecialchars($libro["nombre"]) ?></h2>
-                <p class="autor">Autor/a: <?= htmlspecialchars($libro["autor"]) ?></p>
-                <p class="genero">Género: <?= htmlspecialchars($libro["genero"]) ?></p>
-                <p class="precio">Precio: $<?= number_format($libro["precio"], 2) ?></p>
-                <p>Stock: <?= htmlspecialchars($libro["stock"]) ?></p>
-                <h3>Descripción</h3>
-                <p class="descripcion"><?= htmlspecialchars($libro["descripcion"]) ?></p>
-                <a class="boton" href="productos.php">← Regresar al catálogo</a>
-            </article>
-        <?php else: ?>
+        <?php if (isset($mensajeError)): ?>
+
             <article>
                 <h2>Libro no encontrado</h2>
-                <p>No se encontró el libro solicitado.</p>
+                <p><?= escapar($mensajeError) ?></p>
                 <a class="boton" href="productos.php">Regresar al catálogo</a>
             </article>
+
+        <?php else: ?>
+
+            <article>
+                <h2><?= escapar($libro->obtenerNombre()) ?></h2>
+
+                <p class="autor">
+                    Autor/a: <?= escapar($libro->obtenerAutor()) ?>
+                </p>
+
+                <p class="genero">
+                    Género:
+                    <?= escapar($libro->obtenerCategoria()->obtenerNombre()) ?>
+                </p>
+
+                <p class="precio">
+                    Precio: <?= escapar($libro->obtenerPrecioFormateado()) ?>
+                </p>
+
+                <?= mostrarDisponibilidad($libro) ?>
+
+                <h3>Descripción</h3>
+
+                <p class="descripcion">
+                    <?= escapar($libro->obtenerDescripcion()) ?>
+                </p>
+
+                <a class="boton" href="productos.php">
+                    ← Regresar al catálogo
+                </a>
+            </article>
+
         <?php endif; ?>
     </main>
 
