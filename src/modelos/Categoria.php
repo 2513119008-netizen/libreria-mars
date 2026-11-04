@@ -10,9 +10,8 @@ class Categoria
         $this->nombre = $nombre;
     }
 
-    public function ObtenerNombre(): string
+    public function obtenerNombre(): string
     {
         return $this->nombre;
     }
 }
-?>

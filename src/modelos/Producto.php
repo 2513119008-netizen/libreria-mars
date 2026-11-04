@@ -8,11 +8,9 @@ class Producto
     private const CAMPOS_OBLIGATORIOS = [
         'id',
         'nombre',
-        'categoria',
         'precio',
         'descripcion',
-        'stock',
-        'imagen'
+        'stock'
     ];
 
     private int $id;
@@ -22,6 +20,7 @@ class Producto
     private string $descripcion;
     private int $stock;
     private string $imagen;
+    private string $autor;
 
     public function __construct(
         int $id,
@@ -30,7 +29,8 @@ class Producto
         float $precio,
         string $descripcion,
         int $stock,
-        string $imagen
+        string $imagen = 'sin-imagen.jpg',
+        string $autor = ''
     ) {
         $this->id = $id;
         $this->nombre = $nombre;
@@ -39,6 +39,36 @@ class Producto
         $this->descripcion = $descripcion;
         $this->stock = $stock;
         $this->imagen = $imagen;
+        $this->autor = $autor;
+    }
+
+    private static function exigirCampos(array $registro): void
+    {
+        foreach (self::CAMPOS_OBLIGATORIOS as $campo) {
+            if (!array_key_exists($campo, $registro)) {
+                throw new InvalidArgumentException(
+                    "El producto no tiene el campo obligatorio: {$campo}"
+                );
+            }
+        }
+    }
+
+    public static function desdeArreglo(array $registro): Producto
+    {
+        self::exigirCampos($registro);
+
+        $nombreCategoria = $registro['categoria'] ?? $registro['genero'] ?? 'Sin categoría';
+
+        return new Producto(
+            (int) $registro['id'],
+            (string) $registro['nombre'],
+            new Categoria((string) $nombreCategoria),
+            (float) $registro['precio'],
+            (string) $registro['descripcion'],
+            (int) $registro['stock'],
+            (string) ($registro['imagen'] ?? 'sin-imagen.jpg'),
+            (string) ($registro['autor'] ?? '')
+        );
     }
 
     public function obtenerId(): int
@@ -74,5 +104,20 @@ class Producto
     public function obtenerImagen(): string
     {
         return $this->imagen;
+    }
+
+    public function obtenerAutor(): string
+    {
+        return $this->autor;
+    }
+
+    public function obtenerPrecioFormateado(): string
+    {
+        return '$' . number_format($this->precio, 2);
+    }
+
+    public function estaDisponible(): bool
+    {
+        return $this->stock > 0;
     }
 }
